@@ -13,4 +13,13 @@ public class GameEngineTest {
 
         assertEquals("Giocatori: Pippo", engine.state());
     }
+
+    public void add_two_players_to_game() throws Exception {
+        GameEngine engine = new GameEngine();
+
+        engine.action("aggiungi giocatore Pippo");
+        engine.action("aggiungi giocatore Pluto");
+
+        assertEquals("Giocatori: Pippo, Pluto", engine.state());
+    }
 }
