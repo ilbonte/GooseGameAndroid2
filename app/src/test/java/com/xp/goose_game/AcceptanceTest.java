@@ -37,6 +37,8 @@ public class AcceptanceTest {
 
         engine.action("aggiungi giocatore Pippo");
 
-        assertEquals("Pippo giocatore già presente", engine.state());
+        assertEquals("Pippo: giocatore già presente", engine.state());
     }
+
+    
 }

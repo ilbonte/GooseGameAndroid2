@@ -7,13 +7,22 @@ public class GameEngine {
 
     private List<String> players;
 
+    private String state;
+
     public GameEngine() {
         this.players = new ArrayList<>();
     }
 
     public void action(String input) {
         String player = parsePlayer(input);
-        players.add(player);
+        if(players.contains(player)){
+            this.state = player+": giocatore già presente";
+        }else{
+            players.add(player);
+            this.state = "Giocatori: " + printPlayers();
+        }
+
+
     }
 
     private String parsePlayer(String input) {
@@ -21,7 +30,7 @@ public class GameEngine {
     }
 
     public String state() {
-        return "Giocatori: " + printPlayers();
+        return this.state;
     }
 
     private String printPlayers() {

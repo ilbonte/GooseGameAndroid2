@@ -26,7 +26,7 @@ public class GameEngineTest {
         assertEquals("Giocatori: Pippo, Pluto", engine.state());
     }
 
-    @Ignore
+
     @Test
     public void adds_repeating_player() throws Exception {
         GameEngine engine = new GameEngine();
@@ -34,6 +34,6 @@ public class GameEngineTest {
         engine.action("aggiungi giocatore Pippo");
         engine.action("aggiungi giocatore Pippo");
 
-        assertEquals("Pippo giocatore già presente", engine.state());
+        assertEquals("Pippo: giocatore già presente", engine.state());
     }
 }
