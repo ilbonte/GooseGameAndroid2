@@ -10,11 +10,13 @@ class Player {
 
     private int position;
 
+    private int previousPosition;
+
     public Player(String name) {
         this.name = name;
         this.position = 0;
+        this.previousPosition = this.position;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -44,6 +46,11 @@ class Player {
     }
 
     public void move(int firstDistance, int secondDistance) {
+        this.previousPosition = this.position;
         this.position+=firstDistance+secondDistance;
+    }
+
+    public int getPreviousPosition() {
+        return previousPosition;
     }
 }
