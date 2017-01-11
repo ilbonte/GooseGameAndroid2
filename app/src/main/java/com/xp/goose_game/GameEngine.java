@@ -7,6 +7,6 @@ public class GameEngine {
     }
 
     public String state() {
-        return null;
+        return "Giocatori: Pippo";
     }
 }
