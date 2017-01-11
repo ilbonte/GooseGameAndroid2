@@ -5,6 +5,7 @@ import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 
 public class GameEngineTest {
+
     @Test
     public void add_player_to_game() throws Exception {
         GameEngine engine = new GameEngine();
@@ -14,6 +15,7 @@ public class GameEngineTest {
         assertEquals("Giocatori: Pippo", engine.state());
     }
 
+    @Test
     public void add_two_players_to_game() throws Exception {
         GameEngine engine = new GameEngine();
 

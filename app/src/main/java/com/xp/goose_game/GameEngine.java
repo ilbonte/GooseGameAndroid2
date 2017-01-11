@@ -5,7 +5,11 @@ public class GameEngine {
     private String players;
 
     public void action(String input) {
-        players = parsePlayer(input);
+        if(players == null){
+            players = parsePlayer(input);
+        } else {
+            players += ", " + parsePlayer(input);
+        }
     }
 
     private String parsePlayer(String input) {
