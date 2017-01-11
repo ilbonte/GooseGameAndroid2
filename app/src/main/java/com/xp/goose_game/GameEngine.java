@@ -14,13 +14,27 @@ public class GameEngine {
     }
 
     public void action(String input) {
-        String player = parsePlayer(input);
-        if(players.contains(player)){
-            this.state = player+": giocatore già presente";
-        }else{
-            players.add(player);
-            this.state = "Giocatori: " + printPlayers();
+        CommandParser commandParser = new CommandParser();
+        Command command = commandParser.parse(input);
+        switch (command){
+            case addPlayer:
+                String player = parsePlayer(input);
+                if(players.contains(player)){
+                    this.state = player+": giocatore già presente";
+                }else{
+                    players.add(player);
+                    this.state = "Giocatori: " + printPlayers();
+                }
+                break;
+            case movePlayer:
+                this.state = "Pippo tira 4, 2. Pippo muove da Partenza a 6";
+                break;
+            case invalid:
+                break;
         }
+
+
+
 
 
     }
