@@ -1,5 +1,6 @@
 package com.xp.goose_game;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
@@ -23,5 +24,16 @@ public class GameEngineTest {
         engine.action("aggiungi giocatore Pluto");
 
         assertEquals("Giocatori: Pippo, Pluto", engine.state());
+    }
+
+    @Ignore
+    @Test
+    public void adds_repeating_player() throws Exception {
+        GameEngine engine = new GameEngine();
+
+        engine.action("aggiungi giocatore Pippo");
+        engine.action("aggiungi giocatore Pippo");
+
+        assertEquals("Pippo giocatore già presente", engine.state());
     }
 }

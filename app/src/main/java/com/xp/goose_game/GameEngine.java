@@ -1,15 +1,19 @@
 package com.xp.goose_game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameEngine {
 
-    private String players;
+    private List<String> players;
+
+    public GameEngine() {
+        this.players = new ArrayList<>();
+    }
 
     public void action(String input) {
-        if(players == null){
-            players = parsePlayer(input);
-        } else {
-            players += ", " + parsePlayer(input);
-        }
+        String player = parsePlayer(input);
+        players.add(player);
     }
 
     private String parsePlayer(String input) {
@@ -17,6 +21,10 @@ public class GameEngine {
     }
 
     public String state() {
-        return "Giocatori: " + players;
+        return "Giocatori: " + printPlayers();
+    }
+
+    private String printPlayers() {
+        return players.toString().replace("[","").replace("]","");
     }
 }
