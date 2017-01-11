@@ -15,4 +15,12 @@ public class CommandParserTest {
 
         assertEquals(Command.addPlayer,commandParser.parse(userInput));
     }
+
+    @Test
+    public void move_player_input_returns_move_player_command() throws Exception {
+        CommandParser commandParser = new CommandParser();
+        String userInput = "muovi Pippo 4, 2";
+
+        assertEquals(Command.movePlayer,commandParser.parse(userInput));
+    }
 }
