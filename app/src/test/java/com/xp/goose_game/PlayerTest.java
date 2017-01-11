@@ -46,10 +46,9 @@ public class PlayerTest {
     }
 
     @Test
-    public void get_previous_position() throws Exception {
+    public void get_previous_position_as_text() throws Exception {
         Player player = new Player("Pippo");
         player.move(4,2);
-        player.move(4,2);
-        assertEquals(6, player.getPreviousPosition());
+        assertEquals("Partenza", player.getPreviousPosition());
     }
 }
