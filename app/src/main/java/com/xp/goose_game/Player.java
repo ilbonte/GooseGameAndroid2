@@ -38,8 +38,6 @@ class Player {
         return position;
     }
 
-
-
     public void move(int firstDistance, int secondDistance) {
         this.previousPosition = this.position;
         this.position+=firstDistance+secondDistance;

@@ -16,12 +16,12 @@ public class GameEngine {
     }
 
     public void action(String input) {
-        CommandParser commandParser = new CommandParser();
+        CommandParser commandParser = new CommandParser(input);
         Command command = commandParser.parse(input);
 
         switch (command){
             case addPlayer:
-                Player player = new Player (parsePlayer(input));
+                Player player = new Player (commandParser.parseName());
                 if(players.contains(player)){
                     this.state = player.getName()+": giocatore già presente";
                 }else{
@@ -30,9 +30,8 @@ public class GameEngine {
                 }
                 break;
             case movePlayer:
-                //TODO: player2 = getPlayerFromName()....
-                Player player2 = getPlayerFromName(parseMoveCommand(input));
-                int diceValues [] = parseDice(input);
+                Player player2 = getPlayerFromName(commandParser.parseName());
+                int diceValues [] = commandParser.parseDice();
                 player2.move(diceValues[0], diceValues[1]);
                 this.state = "Pippo tira "+ diceValues[0]+", "+ diceValues[1]+". Pippo muove da "+player2.getPreviousPosition()+" a "+player2.getPosition();
                 break;
@@ -51,31 +50,6 @@ public class GameEngine {
             }
         }
         return foundPlayer;
-    }
-
-    private String parseMoveCommand(String input) {
-        Pattern p = Pattern.compile("muovi (\\w+) (\\d), (\\d)");
-        Matcher m = p.matcher(input);
-        if (m.find()) {
-            return m.group(1);
-        } else {
-            return null;
-
-        }
-    }
-
-    private int[] parseDice(String input) {
-        Pattern p = Pattern.compile("muovi \\w+ (\\d), (\\d)");
-        Matcher m = p.matcher(input);
-        if (m.find()) {
-             return new int[]{Integer.parseInt(m.group(1)), Integer.parseInt(m.group(2))};
-        } else {
-            return null;
-        }
-    }
-
-    private String parsePlayer(String input) {
-        return input.replace("aggiungi giocatore ", "");
     }
 
 
