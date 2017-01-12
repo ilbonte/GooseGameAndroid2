@@ -67,6 +67,16 @@ public class GameEngineTest {
         assertEquals("Pippo tira 1, 2. Pippo muove da 60 a 63. Pippo vince!", engine.state());
     }
 
+
+    @Test
+    public void player_bounce_if_next_position_overflows_game_size() throws Exception {
+        engine.action("aggiungi giocatore Pippo");
+        engine.action("muovi Pippo 60, 0");
+
+        engine.action("muovi Pippo 3, 2");
+        assertEquals("Pippo tira 3, 2. Pippo muove da 60 a 63. Pippo Rimbalza! Pippo torna a 61", engine.state());
+    }
+
     private void addPlayer(String playerName){
         engine.action("aggiungi giocatore "+playerName);
     }

@@ -19,25 +19,29 @@ public class GameEngine {
         CommandParser commandParser = new CommandParser(input);
         Command command = commandParser.parse(input);
 
-        switch (command){
-            case addPlayer:
-                Player player = new Player (commandParser.parseName());
-                if(players.contains(player)){
-                    this.state = player.getName()+": giocatore già presente";
-                }else{
+        switch (command) {
+            case addPlayer: {
+                Player player = new Player(commandParser.parseName());
+                if (players.contains(player)) {
+                    this.state = player.getName() + ": giocatore già presente";
+                } else {
                     players.add(player);
                     this.state = "Giocatori:" + printPlayers();
                 }
-                break;
+            }
+            break;
             case movePlayer:
-                Player player2 = getPlayerFromName(commandParser.parseName());
-                int diceValues [] = commandParser.parseDice();
-                player2.move(diceValues[0], diceValues[1]);
-                String lastMovesText="";
-                if(player2.getPosition()==63){
-                    lastMovesText = " "+player2.getName()+" vince!";
-                }
-                this.state = "Pippo tira "+ diceValues[0]+", "+ diceValues[1]+". Pippo muove da "+player2.getPreviousPosition()+" a "+player2.getPosition()+"."+lastMovesText;
+                Player player = getPlayerFromName(commandParser.parseName());
+                int diceValues[] = commandParser.parseDice();
+                player.move(diceValues[0], diceValues[1]);
+
+                this.state = player.getName()+" tira " + diceValues[0] + ", " + diceValues[1] +
+                        ". "+player.getName()+" muove da " + player.getPreviousPosition() + " a " + player.getPosition() + ".";
+
+                String lastMovesText = player.getLastMovesText();
+
+                this.state += lastMovesText;
+
                 break;
             case invalid:
                 break;
@@ -47,8 +51,8 @@ public class GameEngine {
 
     private Player getPlayerFromName(String name) {
         Player foundPlayer = null;
-        for(Player player : players){
-            if(player.getName().equals(name)){
+        for (Player player : players) {
+            if (player.getName().equals(name)) {
                 foundPlayer = player;
                 break;
             }
@@ -57,16 +61,15 @@ public class GameEngine {
     }
 
 
-
     public String state() {
         return this.state;
     }
 
     private String printPlayers() {
-        String playerList= "";
-        for (Player player: players){
-            playerList+=" "+player.getName()+",";
+        String playerList = "";
+        for (Player player : players) {
+            playerList += " " + player.getName() + ",";
         }
-        return playerList.substring(0, playerList.length()-1);
+        return playerList.substring(0, playerList.length() - 1);
     }
 }

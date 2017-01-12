@@ -37,7 +37,7 @@ public class AcceptanceTest {
 
         engine.action("aggiungi giocatore Pippo");
 
-        assertEquals("Pippo: giocatore già presente.", engine.state());
+        assertEquals("Pippo: giocatore già presente", engine.state());
     }
 
     @Test
@@ -61,6 +61,14 @@ public class AcceptanceTest {
 
         engine.action("muovi Pippo 1, 2");
         assertEquals("Pippo tira 1, 2. Pippo muove da 60 a 63. Pippo vince!", engine.state());
+    }
 
+    @Test
+    public void player_bounce_at_the_end_of_the_trail() throws Exception {
+        engine.action("aggiungi giocatore Pippo");
+        engine.action("muovi Pippo 60, 0");
+
+        engine.action("muovi Pippo 3, 2");
+        assertEquals("Pippo tira 3, 2. Pippo muove da 60 a 63. Pippo Rimbalza! Pippo torna a 61", engine.state());
     }
 }

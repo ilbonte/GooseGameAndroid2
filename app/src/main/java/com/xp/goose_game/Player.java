@@ -34,8 +34,13 @@ class Player {
         return name;
     }
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+
     public int getPosition() {
-        return position;
+        return position>63 ? 63 : position;
     }
 
     public void move(int firstDistance, int secondDistance) {
@@ -47,4 +52,18 @@ class Player {
         return this.previousPosition == 0 ? "Partenza" : ""+this.previousPosition;
     }
 
+    public String getLastMovesText() {
+
+        if(position==63){
+            return " "+name+" vince!";
+        }
+
+        if(position>63){
+            int overflow = position-63;
+            position=(63-overflow);
+            return  " "+name+ " Rimbalza!"+ " "+name+" torna a "+position;
+        }
+
+        return "";
+    }
 }
