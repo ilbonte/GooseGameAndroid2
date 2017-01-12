@@ -41,7 +41,7 @@ public class PlayerTest {
     public void move_player_from_a_position_to_another_position() throws Exception {
         Player player = new Player("Pippo");
         player.move(4,2);
-        player.move(4,2);
+        player.move(6,0);
         assertEquals(12, player.getPosition());
     }
 

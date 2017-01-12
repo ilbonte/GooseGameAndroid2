@@ -40,5 +40,18 @@ public class AcceptanceTest {
         assertEquals("Pippo: giocatore già presente", engine.state());
     }
 
-    
+    @Test
+    public void moves_a_player() throws Exception {
+
+        engine.action("aggiungi giocatore Pippo");
+
+        engine.action("muovi Pippo 4, 2");
+
+        assertEquals("Pippo tira 4, 2. Pippo muove da Partenza a 6", engine.state());
+
+        engine.action("muovi Pippo 2, 3");
+
+        assertEquals("Pippo tira 2, 3. Pippo muove da 6 a 11", engine.state());
+
+    }
 }

@@ -29,7 +29,7 @@ public class GameEngineTest {
 
         assertEquals("Giocatori: Pippo, Pluto", engine.state());
     }
-    
+
     @Test
     public void adds_repeating_player() throws Exception {
         addPlayer("Pippo");
@@ -45,6 +45,19 @@ public class GameEngineTest {
         engine.action("muovi Pippo 4, 2");
 
         assertEquals("Pippo tira 4, 2. Pippo muove da Partenza a 6", engine.state());
+    }
+
+    @Test
+    public void move_a_player_from_a_position_to_another_position() throws Exception {
+        addPlayer("Pippo");
+
+        engine.action("muovi Pippo 4, 2");
+
+        //assertEquals("Pippo tira 4, 2. Pippo muove da Partenza a 6", engine.state());
+
+        engine.action("muovi Pippo 2, 3");
+
+        assertEquals("Pippo tira 2, 3. Pippo muove da 6 a 11", engine.state());
     }
 
     private void addPlayer(String playerName){

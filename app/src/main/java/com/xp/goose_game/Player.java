@@ -1,8 +1,5 @@
 package com.xp.goose_game;
 
-/**
- * Created by XPeppers on 11/01/2017.
- */
 
 class Player {
 
@@ -41,16 +38,15 @@ class Player {
         return position;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
+
 
     public void move(int firstDistance, int secondDistance) {
         this.previousPosition = this.position;
         this.position+=firstDistance+secondDistance;
     }
 
-    public int getPreviousPosition() {
-        return previousPosition;
+    public String getPreviousPosition() {
+        return this.previousPosition == 0 ? "Partenza" : ""+this.previousPosition;
     }
+
 }
