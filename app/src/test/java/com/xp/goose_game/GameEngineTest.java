@@ -44,7 +44,7 @@ public class GameEngineTest {
 
         engine.action("muovi Pippo 4, 2");
 
-        assertEquals("Pippo tira 4, 2. Pippo muove da Partenza a 6", engine.state());
+        assertEquals("Pippo tira 4, 2. Pippo muove da Partenza a 6.", engine.state());
     }
 
     @Test
@@ -53,11 +53,18 @@ public class GameEngineTest {
 
         engine.action("muovi Pippo 4, 2");
 
-        //assertEquals("Pippo tira 4, 2. Pippo muove da Partenza a 6", engine.state());
-
         engine.action("muovi Pippo 2, 3");
 
-        assertEquals("Pippo tira 2, 3. Pippo muove da 6 a 11", engine.state());
+        assertEquals("Pippo tira 2, 3. Pippo muove da 6 a 11.", engine.state());
+    }
+
+    @Test
+    public void player_wins_if_lands_exactly_on_63() throws Exception {
+        addPlayer("Pippo");
+        engine.action("muovi Pippo 60, 0");
+
+        engine.action("muovi Pippo 1, 2");
+        assertEquals("Pippo tira 1, 2. Pippo muove da 60 a 63. Pippo vince!", engine.state());
     }
 
     private void addPlayer(String playerName){

@@ -33,7 +33,11 @@ public class GameEngine {
                 Player player2 = getPlayerFromName(commandParser.parseName());
                 int diceValues [] = commandParser.parseDice();
                 player2.move(diceValues[0], diceValues[1]);
-                this.state = "Pippo tira "+ diceValues[0]+", "+ diceValues[1]+". Pippo muove da "+player2.getPreviousPosition()+" a "+player2.getPosition();
+                String lastMovesText="";
+                if(player2.getPosition()==63){
+                    lastMovesText = " "+player2.getName()+" vince!";
+                }
+                this.state = "Pippo tira "+ diceValues[0]+", "+ diceValues[1]+". Pippo muove da "+player2.getPreviousPosition()+" a "+player2.getPosition()+"."+lastMovesText;
                 break;
             case invalid:
                 break;

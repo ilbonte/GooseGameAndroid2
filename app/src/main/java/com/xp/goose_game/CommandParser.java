@@ -11,7 +11,7 @@ public class CommandParser {
 
     private static final String ADD_PLAYER_COMMAND = "aggiungi giocatore \\w+";
 
-    private static final String MOVE_PLAYER_COMMAND = "muovi (\\w+) (\\d), (\\d)";
+    private static final String MOVE_PLAYER_COMMAND = "muovi (\\w+) (\\d+), (\\d+)";
     private final Command command;
 
     private String parsedName;

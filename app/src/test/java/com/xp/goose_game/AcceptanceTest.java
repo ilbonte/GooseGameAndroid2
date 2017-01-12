@@ -37,7 +37,7 @@ public class AcceptanceTest {
 
         engine.action("aggiungi giocatore Pippo");
 
-        assertEquals("Pippo: giocatore già presente", engine.state());
+        assertEquals("Pippo: giocatore già presente.", engine.state());
     }
 
     @Test
@@ -47,11 +47,20 @@ public class AcceptanceTest {
 
         engine.action("muovi Pippo 4, 2");
 
-        assertEquals("Pippo tira 4, 2. Pippo muove da Partenza a 6", engine.state());
+//        assertEquals("Pippo tira 4, 2. Pippo muove da Partenza a 6", engine.state());
 
         engine.action("muovi Pippo 2, 3");
 
-        assertEquals("Pippo tira 2, 3. Pippo muove da 6 a 11", engine.state());
+        assertEquals("Pippo tira 2, 3. Pippo muove da 6 a 11.", engine.state());
+    }
+
+    @Test
+    public void player_can_win() throws Exception {
+        engine.action("aggiungi giocatore Pippo");
+        engine.action("muovi Pippo 60, 0");
+
+        engine.action("muovi Pippo 1, 2");
+        assertEquals("Pippo tira 1, 2. Pippo muove da 60 a 63. Pippo vince!", engine.state());
 
     }
 }

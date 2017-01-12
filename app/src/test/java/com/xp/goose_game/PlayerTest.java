@@ -51,4 +51,7 @@ public class PlayerTest {
         player.move(4,2);
         assertEquals("Partenza", player.getPreviousPosition());
     }
+
+
+
 }
