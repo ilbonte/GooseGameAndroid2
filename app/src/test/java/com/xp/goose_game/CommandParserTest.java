@@ -37,7 +37,7 @@ public class CommandParserTest {
         String userInput = "aggiungi giocatore Pippo";
         CommandParser commandParser = new CommandParser(userInput);
 
-        assertEquals("Pippo",commandParser.parseName());
+        assertEquals("Pippo",commandParser.getPlayerName());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class CommandParserTest {
         String userInput = "muovi Pippo 4, 2";
         CommandParser commandParser = new CommandParser(userInput);
 
-        assertEquals("Pippo",commandParser.parseName());
+        assertEquals("Pippo",commandParser.getPlayerName());
     }
 
     @Test
@@ -53,8 +53,8 @@ public class CommandParserTest {
         String userInput = "muovi Pippo 4, 2";
         CommandParser commandParser = new CommandParser(userInput);
 
-        assertEquals(4,commandParser.parseDice()[0]);
-        assertEquals(2,commandParser.parseDice()[1]);
+        assertEquals(4,commandParser.getDiceValue()[0]);
+        assertEquals(2,commandParser.getDiceValue()[1]);
 
     }
 

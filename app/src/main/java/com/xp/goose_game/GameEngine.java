@@ -2,8 +2,6 @@ package com.xp.goose_game;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class GameEngine {
 
@@ -17,11 +15,11 @@ public class GameEngine {
 
     public void action(String input) {
         CommandParser commandParser = new CommandParser(input);
-        Command command = commandParser.parse(input);
+        Command command = commandParser.getCommand();
 
         switch (command) {
             case addPlayer: {
-                Player player = new Player(commandParser.parseName());
+                Player player = new Player(commandParser.getPlayerName());
                 if (players.contains(player)) {
                     this.state = player.getName() + ": giocatore già presente";
                 } else {
@@ -31,8 +29,8 @@ public class GameEngine {
             }
             break;
             case movePlayer:
-                Player player = getPlayerFromName(commandParser.parseName());
-                int diceValues[] = commandParser.parseDice();
+                Player player = getPlayerFromName(commandParser.getPlayerName());
+                int diceValues[] = commandParser.getDiceValue();
                 player.move(diceValues[0], diceValues[1]);
 
                 this.state = player.getName()+" tira " + diceValues[0] + ", " + diceValues[1] +

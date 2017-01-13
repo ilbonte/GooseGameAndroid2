@@ -10,18 +10,28 @@ import java.util.regex.Pattern;
 public class CommandParser {
 
     private static final String ADD_PLAYER_COMMAND = "aggiungi giocatore \\w+";
-
     private static final String MOVE_PLAYER_COMMAND = "muovi (\\w+) (\\d+), (\\d+)";
     private final Command command;
-
     private String parsedName;
     private int parsedDiceValues [] = null;
 
-    public CommandParser(String command){
-        this.command = this.parse(command);
+    public CommandParser(String input){
+        this.command = this.parse(input);
     }
 
-    public Command parse(String input) {
+    public Command getCommand() {
+        return command;
+    }
+
+    public String getPlayerName() {
+        return this.parsedName;
+    }
+
+    public int[] getDiceValue() {
+        return this.parsedDiceValues;
+    }
+
+    private Command parse(String input) {
 
         if(input.matches(ADD_PLAYER_COMMAND)) {
             this.parsedName = input.replace("aggiungi giocatore ", "");
@@ -50,18 +60,5 @@ public class CommandParser {
         Matcher m = p.matcher(input);
         m.find();
         return m.group(1);
-    }
-
-
-    public Command getCommand() {
-        return command;
-    }
-
-    public String parseName() {
-        return this.parsedName;
-    }
-
-    public int[] parseDice() {
-        return this.parsedDiceValues;
     }
 }
