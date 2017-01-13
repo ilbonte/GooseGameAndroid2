@@ -44,6 +44,8 @@ public class GameEngine {
 
                 break;
             case invalid:
+
+                this.state = "Commando Invalido";
                 break;
         }
 

@@ -47,7 +47,6 @@ public class AcceptanceTest {
 
         engine.action("muovi Pippo 4, 2");
 
-//        assertEquals("Pippo tira 4, 2. Pippo muove da Partenza a 6", engine.state());
 
         engine.action("muovi Pippo 2, 3");
 
