@@ -10,12 +10,13 @@ import java.util.regex.Pattern;
 public class CommandParser {
 
     private static final String ADD_PLAYER_COMMAND = "aggiungi giocatore \\w+";
-    private static final String MOVE_PLAYER_COMMAND = "muovi (\\w+) (\\d+), (\\d+)";
+    private static final String MOVE_PLAYER_COMMAND = "muovi (\\w+).*";
+    private static final String MOVE_PLAYER_EXPLICIT_COMMAND = "muovi (\\w+) (\\d+), (\\d+)";
     private final Command command;
     private String parsedName;
-    private int parsedDiceValues [] = null;
+    private int parsedDiceValues[] = null;
 
-    public CommandParser(String input){
+    public CommandParser(String input) {
         this.command = this.parse(input);
     }
 
@@ -33,13 +34,13 @@ public class CommandParser {
 
     private Command parse(String input) {
 
-        if(input.matches(ADD_PLAYER_COMMAND)) {
+        if (input.matches(ADD_PLAYER_COMMAND)) {
             this.parsedName = input.replace("aggiungi giocatore ", "");
 
             return Command.addPlayer;
         }
 
-        if(input.matches(MOVE_PLAYER_COMMAND)) {
+        if (input.matches(MOVE_PLAYER_COMMAND)) {
             this.parsedName = parseNameFromMoveCommand(input);
             this.parsedDiceValues = parseDiceFromMoveCommand(input);
             return Command.movePlayer;
@@ -49,10 +50,13 @@ public class CommandParser {
     }
 
     private int[] parseDiceFromMoveCommand(String input) {
-        Pattern p = Pattern.compile(MOVE_PLAYER_COMMAND);
+        Pattern p = Pattern.compile(MOVE_PLAYER_EXPLICIT_COMMAND);
         Matcher m = p.matcher(input);
-        m.find();
-        return new int[]{Integer.parseInt(m.group(2)), Integer.parseInt(m.group(3))};
+        if(m.find()) {
+            return new int[]{Integer.parseInt(m.group(2)), Integer.parseInt(m.group(3))};
+        } else {
+            return null;
+        }
     }
 
     private String parseNameFromMoveCommand(String input) {

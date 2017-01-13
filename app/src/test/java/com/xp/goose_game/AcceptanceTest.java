@@ -70,4 +70,13 @@ public class AcceptanceTest {
         engine.action("muovi Pippo 3, 2");
         assertEquals("Pippo tira 3, 2. Pippo muove da 60 a 63. Pippo Rimbalza! Pippo torna a 61", engine.state());
     }
+
+    @Test public void
+    lazy_player() throws Exception {
+        engine.action("aggiungi giocatore Pippo");
+        engine.action("muovi Pippo 2, 2");
+
+        engine.action("muovi Pippo");
+        assertEquals("Pippo tira 1, 2. Pippo muove da 4 a 7.", engine.state());
+    }
 }

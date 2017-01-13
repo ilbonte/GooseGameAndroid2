@@ -13,6 +13,7 @@ public class GameEngine {
         this.players = new ArrayList<>();
     }
 
+
     public void action(String input) {
         CommandParser commandParser = new CommandParser(input);
         Command command = commandParser.getCommand();
@@ -30,11 +31,16 @@ public class GameEngine {
             break;
             case movePlayer:
                 Player player = getPlayerFromName(commandParser.getPlayerName());
-                int diceValues[] = commandParser.getDiceValue();
+                int diceValues[];
+                if (commandParser.getDiceValue() == null) {
+                    diceValues = new int[]{1, 2};
+                } else {
+                    diceValues = commandParser.getDiceValue();
+                }
                 player.move(diceValues[0], diceValues[1]);
 
-                this.state = player.getName()+" tira " + diceValues[0] + ", " + diceValues[1] +
-                        ". "+player.getName()+" muove da " + player.getPreviousPosition() + " a " + player.getPosition() + ".";
+                this.state = player.getName() + " tira " + diceValues[0] + ", " + diceValues[1] +
+                        ". " + player.getName() + " muove da " + player.getPreviousPosition() + " a " + player.getPosition() + ".";
 
                 String lastMovesText = player.getLastMovesText();
 
